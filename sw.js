@@ -1,17 +1,17 @@
 /* Kit Paz – Service Worker
    Guarda o app no celular para funcionar sem internet.
-   >>> A cada versão nova do app, aumente o número em VERSAO (ex.: 'paz-v9.7'). <<< */
-const VERSAO = 'paz-v9.6';
+   >>> A cada versão nova do app, aumente o número em VERSAO (ex.: 'paz-v9.8'). <<< */
+const VERSAO = 'paz-v9.7';
 /* Essenciais: sem eles o app não funciona offline (se faltarem, a instalação falha de propósito) */
 const ESSENCIAIS = ['./', './index.html'];
 /* Opcionais: se algum faltar no endereço publicado, o app continua funcionando offline do mesmo jeito */
 const OPCIONAIS = [
   './manifest.json',
-  './icons/icon-192.png',
-  './icons/icon-512.png',
-  './icons/icon-maskable-512.png',
-  './icons/apple-touch-icon.png',
-  './icons/favicon-48.png'
+  './icon-192.png',
+  './icon-512.png',
+  './icon-maskable-512.png',
+  './apple-touch-icon.png',
+  './favicon-48.png'
 ];
 
 /* Instalação: baixa e guarda os arquivos do app */
