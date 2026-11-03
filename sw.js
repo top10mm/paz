@@ -1,10 +1,11 @@
 /* Kit Paz – Service Worker
    Guarda o app no celular para funcionar sem internet.
-   >>> A cada versão nova do app, aumente o número em VERSAO (ex.: 'paz-v9.6'). <<< */
-const VERSAO = 'paz-v9.5';
-const ARQUIVOS = [
-  './',
-  './index.html',
+   >>> A cada versão nova do app, aumente o número em VERSAO (ex.: 'paz-v9.7'). <<< */
+const VERSAO = 'paz-v9.6';
+/* Essenciais: sem eles o app não funciona offline (se faltarem, a instalação falha de propósito) */
+const ESSENCIAIS = ['./', './index.html'];
+/* Opcionais: se algum faltar no endereço publicado, o app continua funcionando offline do mesmo jeito */
+const OPCIONAIS = [
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -13,11 +14,14 @@ const ARQUIVOS = [
   './icons/favicon-48.png'
 ];
 
-/* Instalação: baixa e guarda todos os arquivos do app */
+/* Instalação: baixa e guarda os arquivos do app */
 self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(VERSAO).then(c => c.addAll(ARQUIVOS)).then(() => self.skipWaiting())
-  );
+  e.waitUntil((async () => {
+    const cache = await caches.open(VERSAO);
+    await cache.addAll(ESSENCIAIS);
+    await Promise.all(OPCIONAIS.map(u => cache.add(u).catch(() => {})));
+    await self.skipWaiting();
+  })());
 });
 
 /* Ativação: apaga versões antigas guardadas e assume o controle das abas abertas */

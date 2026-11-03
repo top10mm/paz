@@ -484,9 +484,16 @@ input[type=range]{padding:0;height:34px;border:none;background:transparent;accen
     </div>
     <div class="card" style="text-align:center">
       <p class="sub">📅 Início do Projeto: Outubro/2026</p>
-      <p class="sub" style="margin-top:6px">✨ <b>Kit Paz – Anticrises</b> (versão 9.5)</p>
+      <p class="sub" style="margin-top:6px">✨ <b>Kit Paz – Anticrises</b> (versão 9.6)</p>
       <p class="sub" style="margin-top:6px">📧 top10mm@myyahoo.com</p>
       <button class="btn btn-suave" style="margin-top:16px" onclick="location.href='mailto:top10mm@myyahoo.com'">Enviar e-mail 💌</button>
+      <div style="margin-top:18px;padding-top:14px;border-top:1px dashed #E3D8F6;text-align:left">
+        <p class="sub" style="font-weight:700;color:#9A7FE0;text-align:center">📲 Aplicativo</p>
+        <p class="sub" id="stModo" style="margin-top:6px"></p>
+        <p class="sub" id="stOffline" style="margin-top:6px"></p>
+        <button class="btn btn-menta" id="btnInstalar" style="display:none;margin-top:10px" onclick="instalarApp()">📲 Instalar aplicativo</button>
+        <p class="sub" id="stIos" style="display:none;margin-top:8px"></p>
+      </div>
     </div>
   </div>
 </div>
@@ -598,7 +605,7 @@ function ir(id){
   $$('.tela').forEach(t=>t.classList.remove('ativa'));
   $('#'+id).classList.add('ativa');
   $$('.nav').forEach(n=>n.classList.toggle('sel',n.dataset.t===id));
-  if(id==='t-kit')renderKit();if(id==='t-mapa')renderStats();if(id==='t-sos')sosVerificaLocal();
+  if(id==='t-kit')renderKit();if(id==='t-mapa')renderStats();if(id==='t-sos')sosVerificaLocal();if(id==='t-sobre')atualizaStatusApp();
   const kitNav=$('.nav[data-t="t-kit"]');if(kitNav)kitNav.classList.toggle('pisca',id==='t-inicio');
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -1421,12 +1428,46 @@ function sosVerificaLocal(){
 }
 
 /* ===== PWA: funcionar offline e permitir instalação ===== */
+let promptInstalar=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();promptInstalar=e;atualizaStatusApp()});
+window.addEventListener('appinstalled',()=>{promptInstalar=null;atualizaStatusApp();toast('Aplicativo instalado! 💜')});
+function instalarApp(){
+  if(!promptInstalar)return;
+  promptInstalar.prompt();
+  promptInstalar.userChoice.finally(()=>{promptInstalar=null;atualizaStatusApp()});
+}
+/* mostra, na tela Sobre, se o app está instalado e se já está pronto para funcionar sem internet */
+async function atualizaStatusApp(){
+  const el=id=>document.getElementById(id);if(!el('stModo'))return;
+  const instalado=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
+  const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  el('stModo').textContent=instalado?'✅ Aberto como aplicativo instalado.':'🌐 Aberto no navegador (ainda não como aplicativo).';
+  let msg;
+  if(!('serviceWorker' in navigator)||!/^https?:/.test(location.protocol))msg='⚠️ Uso sem internet indisponível: abra o app pelo endereço https.';
+  else{
+    try{
+      const reg=await navigator.serviceWorker.getRegistration();
+      const guardado=await caches.match('index.html');
+      if(reg&&reg.active&&guardado)msg='✅ Pronto para usar sem internet.';
+      else if(reg&&(reg.installing||reg.waiting))msg='⏳ Preparando para usar sem internet… aguarde alguns segundos com a internet ligada.';
+      else msg='⚠️ Ainda NÃO está pronto para usar sem internet. Abra o app com a internet ligada, aguarde alguns segundos e volte aqui. Se continuar assim, algum arquivo do app pode estar faltando no endereço publicado.';
+    }catch(e){msg='⚠️ Não foi possível verificar o modo sem internet neste navegador.'}
+  }
+  el('stOffline').textContent=msg;
+  el('btnInstalar').style.display=(promptInstalar&&!instalado)?'block':'none';
+  const st=el('stIos');
+  if(ios&&!instalado){st.style.display='block';st.textContent='Para instalar no iPhone: toque em Compartilhar (quadrado com seta) e depois em “Adicionar à Tela de Início”. Depois abra o app pelo ícone novo, uma vez, com a internet ligada.'}
+  else if(!ios&&!instalado&&!promptInstalar){st.style.display='block';st.textContent='Para instalar no Android: toque no menu ⋮ do navegador e procure “Instalar app”. Se aparecer só “Adicionar à tela inicial”, o navegador ainda não reconheceu o app como instalável.'}
+  else st.style.display='none';
+}
 if('serviceWorker' in navigator && /^https?:/.test(location.protocol)){
   window.addEventListener('load',()=>{
     const jaTinha=!!navigator.serviceWorker.controller;
     navigator.serviceWorker.register('sw.js').catch(()=>{});
+    navigator.serviceWorker.ready.then(()=>setTimeout(atualizaStatusApp,600)).catch(()=>{});
     navigator.serviceWorker.addEventListener('controllerchange',()=>{
       if(jaTinha)toast('Nova versão instalada! Feche e abra o app para atualizar 💜');
+      setTimeout(atualizaStatusApp,600);
     });
   });
 }
