@@ -13,7 +13,7 @@
 <meta name="apple-mobile-web-app-title" content="Kit Paz">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="description" content="Kit Paz – Anticrises: seu companheiro de bolso para momentos de ansiedade, pânico e sobrecarga.">
-<title>PAZ — Companheiro Anticrise</title>
+<title>Kit Paz – Anticrises</title>
 <style>
 :root{
   --lavanda:#C7B9FF; --pessego:#FFD9C0; --menta:#B8E0D2; --rosa:#FFC6D9;
@@ -632,7 +632,7 @@ d. Rights beyond those granted in this Public License are completely reserved by
     </div>
     <div class="card" style="text-align:center">
       <p class="sub">📅 Início do Projeto: Outubro/2026</p>
-      <p class="sub" style="margin-top:6px">✨ <b>Kit Paz – Anticrises</b> (versão 9.9)</p>
+      <p class="sub" style="margin-top:6px">✨ <b>Kit Paz – Anticrises</b> (versão 10.0)</p>
       <p class="sub" style="margin-top:6px">📧 top10mm@myyahoo.com</p>
       <button class="btn btn-suave" style="margin-top:16px" onclick="location.href='mailto:top10mm@myyahoo.com'">Enviar e-mail 💌</button>
       <div style="margin-top:18px;padding-top:14px;border-top:1px dashed #E3D8F6;text-align:left">
@@ -1013,7 +1013,7 @@ function usarTecnica(id){
   }else if(id==='ground'){
     iniciarGrounding();ir('t-grounding');
   }else if(id==='contato'){
-    ir('t-sos');setTimeout(pedirAjuda,400);
+    ir('t-sos');   /* só abre a tela SOS; o envio é feito pelo botão PEDIR AJUDA AGORA */
   }else if(id==='musica'){
     ir('t-musica');
   }else if(id==='cromo'){
