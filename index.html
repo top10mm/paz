@@ -122,24 +122,27 @@ input:focus,textarea:focus{border-color:var(--lavanda)}
 .nt-t{font-weight:900;font-size:.95rem;line-height:1.25}
 .nt-c{font-size:.85rem;margin-top:6px;white-space:pre-wrap;flex:1;line-height:1.35;opacity:.9}
 .nt-papel{flex:1;display:flex;flex-direction:column}
-/* nota estampada: parece uma folha de caderno colada com fita adesiva */
-.nt-card.est{position:relative;padding:9px 9px 8px;border-radius:10px 10px 18px 10px}
-.nt-card.est::before{content:"";position:absolute;top:-8px;left:50%;width:48px;height:16px;transform:translateX(-50%) rotate(-3deg);background:rgba(255,255,255,.62);border:1px dashed rgba(255,255,255,.95);border-radius:3px;box-shadow:0 1px 3px rgba(80,60,110,.14)}
-.nt-card.est .nt-papel{background-color:rgba(255,255,255,.9);border-radius:8px;padding:8px 8px 4px 26px;
-  background-image:linear-gradient(to right,transparent 20px,rgba(255,140,165,.55) 20px,rgba(255,140,165,.55) 21px,transparent 21px),repeating-linear-gradient(to bottom,transparent 0,transparent 20px,rgba(140,165,220,.4) 20px,rgba(140,165,220,.4) 21px);
-  background-position:0 0,0 8px;background-repeat:no-repeat,repeat}
-.nt-card.est .nt-t{line-height:21px;font-size:.9rem}
-.nt-card.est .nt-c{line-height:21px;margin-top:0;font-size:.82rem;opacity:1}
-.nt-card.est .nt-acoes{margin-top:8px}
-.nt-card.est .nt-btn{background:rgba(255,255,255,.82)}
+/* nota estampada: a estampa cobre a nota inteira */
+.nt-card.est,.nt-card.est:nth-child(even){border-radius:16px;padding:14px 14px 10px;transform:none;box-shadow:0 6px 16px rgba(80,60,110,.2)}
+.nt-card.est .nt-t,.nt-card.est .nt-c{color:#3b3350;text-shadow:0 0 4px rgba(255,255,255,.95),0 0 2px rgba(255,255,255,.9)}
+.nt-card.est .nt-btn{background:rgba(255,255,255,.85)}
 .nt-acoes{display:flex;gap:6px;justify-content:flex-end;margin-top:10px;flex-wrap:wrap}
 .nt-btn{background:rgba(255,255,255,.55);border:none;border-radius:8px;padding:5px 8px;font-family:inherit;font-size:.7rem;font-weight:700;color:#3b3350;cursor:pointer}
-.nt-ov{position:fixed;inset:0;z-index:250;display:none;align-items:center;justify-content:center;background:rgba(60,40,90,.45);padding:18px}
+.nt-ov{position:fixed;inset:0;z-index:250;display:none;align-items:flex-start;justify-content:center;background:rgba(60,40,90,.45);padding:10px 14px}
+@media (min-width:700px){.nt-ov{align-items:center;padding:18px}}
 .nt-ov.on{display:flex}
-.nt-modal{width:100%;max-width:400px;background:#fff;border-radius:22px;padding:22px 20px;box-shadow:0 20px 50px rgba(60,40,90,.3);animation:subir .25s ease both;max-height:92vh;overflow:auto}
-.nt-cores{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
-.nt-cor{width:36px;height:36px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0;box-shadow:0 1px 4px rgba(80,60,110,.22)}
+.nt-modal{width:100%;max-width:400px;background:#fff;border-radius:22px;padding:22px 20px;box-shadow:0 20px 50px rgba(60,40,90,.3);animation:subir .25s ease both;max-height:100%;overflow:auto}
+.nt-cores{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.nt-cor{width:30px;height:30px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0;box-shadow:0 1px 4px rgba(80,60,110,.22)}
 .nt-cor.sel{border-color:#3b3350;box-shadow:0 0 0 2px #fff inset,0 2px 6px rgba(80,60,110,.3)}
+.nt-modal.cp{padding:14px 16px}
+.nt-modal.cp h2{font-size:1.05rem;margin:0}
+.nt-modal.cp .sub{margin-top:8px!important}
+.nt-modal.cp input,.nt-modal.cp textarea{padding:9px 12px;font-size:.9rem}
+.nt-modal.cp textarea{height:64px;min-height:0}
+.nt-modal.cp .nt-cores{margin-top:8px}
+.nt-modal.cp .nt-rodape{margin-top:10px}
+.nt-modal.cp .nt-rodape .btn{padding:8px 18px}
 .nt-rodape{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
 .nt-rodape .btn{width:auto;padding:11px 20px;margin:0}
 /* ATERRAMENTO */
@@ -643,7 +646,7 @@ d. Rights beyond those granted in this Public License are completely reserved by
     </div>
     <div class="card" style="text-align:center">
       <p class="sub">📅 Início do Projeto: Outubro/2026</p>
-      <p class="sub" style="margin-top:6px">✨ <b>Kit Paz – Anticrises</b> (versão 10.1)</p>
+      <p class="sub" style="margin-top:6px">✨ <b>Kit Paz – Anticrises</b> (versão 10.2)</p>
       <p class="sub" style="margin-top:6px">📧 top10mm@myyahoo.com</p>
       <button class="btn btn-suave" style="margin-top:16px" onclick="location.href='mailto:top10mm@myyahoo.com'">Enviar e-mail 💌</button>
       <div style="margin-top:18px;padding-top:14px;border-top:1px dashed #E3D8F6;text-align:left">
@@ -1398,10 +1401,16 @@ function taiChiParar(){
 /* ===== ESTAMPAS DOS POST-ITS (desenhadas em SVG, delicadas e em tons suaves) ===== */
 function svgUrl(s){return "url('data:image/svg+xml,"+encodeURIComponent(s).replace(/'/g,'%27')+"')"}
 function SVGA(w,h,corpo){return '<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'">'+corpo+'</svg>'}
+function svgG(x,y,s,rot,corpo){return '<g transform="translate('+x+' '+y+') rotate('+(rot||0)+') scale('+s+')">'+corpo+'</g>'}
 function svgMargarida(cx,cy,r){
   let p='';for(let i=0;i<8;i++)p+='<ellipse cx="'+cx+'" cy="'+(cy-r*.62)+'" rx="'+(r*.3)+'" ry="'+(r*.5)+'" fill="#fff" transform="rotate('+(i*45)+' '+cx+' '+cy+')"/>';
   return p+'<circle cx="'+cx+'" cy="'+cy+'" r="'+(r*.28)+'" fill="#FFD66B"/>';
 }
+function svgFlor5(cx,cy,r,cor){
+  let p='';for(let i=0;i<5;i++)p+='<ellipse cx="'+cx+'" cy="'+(cy-r*.62)+'" rx="'+(r*.42)+'" ry="'+(r*.55)+'" fill="'+cor+'" transform="rotate('+(i*72)+' '+cx+' '+cy+')"/>';
+  return p+'<circle cx="'+cx+'" cy="'+cy+'" r="'+(r*.3)+'" fill="#FFE08A"/>';
+}
+function svgFolha(x,y,rot,s,cor){return svgG(x,y,s,rot,'<path d="M0 0 C4 -4.5 10 -4.5 14 0 C10 4.5 4 4.5 0 0Z" fill="'+(cor||'#9CCB8E')+'"/>')}
 function svgTulipa(x,y,s,cor){
   return '<g transform="translate('+x+' '+y+') scale('+s+')"><path d="M0 26 L0 6" stroke="#93D8A8" stroke-width="1.8" stroke-linecap="round"/><path d="M0 20 C-7 18 -9 12 -9 9 C-4 10 -1 14 0 20Z" fill="#B3E6C0"/><path d="M0 22 C6 20 8 15 8 12 C4 13 1 16 0 22Z" fill="#A3DFB3"/><path d="M-6.5 -4 C-6.5 4 -3.5 8 0 8 C3.5 8 6.5 4 6.5 -4 C4.5 -1 2.2 -3 0 -8 C-2.2 -3 -4.5 -1 -6.5 -4Z" fill="'+cor+'"/><path d="M0 -8 C-1.4 -3 -1.4 3 0 8 C1.4 3 1.4 -3 0 -8Z" fill="#fff" opacity=".28"/></g>';
 }
@@ -1424,32 +1433,44 @@ function svgSol(x,y,s){
     '<path d="M'+(x-2.4*s)+' '+(y+2.2*s)+' Q'+x+' '+(y+4.6*s)+' '+(x+2.4*s)+' '+(y+2.2*s)+'" stroke="#7A5C3E" stroke-width="'+(.9*s)+'" fill="none" stroke-linecap="round"/>'+
     '<circle cx="'+(x-5.4*s)+'" cy="'+(y+2*s)+'" r="'+(1.5*s)+'" fill="#FFB7A0" opacity=".8"/><circle cx="'+(x+5.4*s)+'" cy="'+(y+2*s)+'" r="'+(1.5*s)+'" fill="#FFB7A0" opacity=".8"/>';
 }
-function svgArco(x,y){
+function svgArco(x,y,s){
   const cs=['#FFA9BF','#FFD38C','#9FE3C9','#A9C9FF'];let p='';
-  cs.forEach((c,i)=>{const r=15-i*3.2;p+='<path d="M'+(x-r)+' '+y+' A'+r+' '+r+' 0 0 1 '+(x+r)+' '+y+'" stroke="'+c+'" stroke-width="3" fill="none" stroke-linecap="round"/>'});
-  return p+svgNuvem(x-14,y+1,.5)+svgNuvem(x+14,y+1,.5);
+  cs.forEach((c,i)=>{const r=15-i*3.2;p+='<path d="M'+(-r)+' 0 A'+r+' '+r+' 0 0 1 '+r+' 0" stroke="'+c+'" stroke-width="3" fill="none" stroke-linecap="round"/>'});
+  return svgG(x,y,s,0,p+svgNuvem(-14,1,.5)+svgNuvem(14,1,.5));
 }
+function svgEstrela(cx,cy,r,cor){
+  let pts=[];for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,rr=i%2?r*.45:r;pts.push((cx+rr*Math.cos(a)).toFixed(2)+','+(cy+rr*Math.sin(a)).toFixed(2))}
+  return '<polygon points="'+pts.join(' ')+'" fill="'+cor+'" stroke="'+cor+'" stroke-width="1" stroke-linejoin="round"/>';
+}
+function svgCoracao(x,y,s,cor){return svgG(x,y,s,0,'<path d="M0 5 C-8 -1 -5 -8 0 -3 C5 -8 8 -1 0 5Z" fill="'+cor+'"/>')}
 /* as estampas são montadas só quando necessário (evita usar antes de existirem) */
 var ESTAMPAS_;   /* var (sem valor inicial): pode ser usada antes desta linha */
 function estampas(){
   if(ESTAMPAS_)return ESTAMPAS_;
+  const pt=(w,h,bg,corpo)=>SVGA(w,h,'<rect width="'+w+'" height="'+h+'" fill="'+bg+'"/>'+corpo);
   const E={
-    listras:{nome:'Listras',bg:'#FFF8FB',tile:40,
-      svg:SVGA(40,40,'<rect width="40" height="40" fill="#FFF8FB"/><rect width="9" height="40" fill="#FFD3E2"/><rect x="20" width="9" height="40" fill="#D2F0E3"/>')},
-    arco:{nome:'Arco-íris',bg:'#EAF5FF',tile:64,
-      svg:SVGA(64,64,'<rect width="64" height="64" fill="#EAF5FF"/>'+svgArco(32,38)+'<circle cx="8" cy="10" r="1.6" fill="#fff"/><circle cx="54" cy="8" r="1.6" fill="#fff"/><circle cx="50" cy="56" r="1.6" fill="#fff"/><circle cx="12" cy="58" r="1.6" fill="#fff"/>')},
-    ovelha:{nome:'Carneirinho',bg:'#E7F6EE',tile:64,
-      svg:SVGA(64,64,'<rect width="64" height="64" fill="#E7F6EE"/>'+svgOvelha(30,30,.9)+'<circle cx="8" cy="8" r="1.6" fill="#fff"/><circle cx="58" cy="10" r="1.6" fill="#fff"/><circle cx="10" cy="58" r="1.6" fill="#fff"/><circle cx="56" cy="56" r="1.6" fill="#fff"/>')},
-    margaridas:{nome:'Margaridas',bg:'#EFE4FA',tile:64,
-      svg:SVGA(64,64,'<rect width="64" height="64" fill="#EFE4FA"/>'+svgMargarida(18,18,11)+svgMargarida(47,44,9)+svgMargarida(50,12,5)+svgMargarida(14,50,5)+'<ellipse cx="32" cy="31" rx="3" ry="1.6" fill="#BFE8CC" transform="rotate(-30 32 31)"/>')},
-    tulipas:{nome:'Tulipas',bg:'#FFF8DE',tile:64,
-      svg:SVGA(64,64,'<rect width="64" height="64" fill="#FFF8DE"/>'+svgTulipa(17,14,.85,'#FF9DB0')+svgTulipa(47,32,.85,'#FFB58C')+svgTulipa(12,44,.55,'#FFB58C')+'<circle cx="56" cy="8" r="1.5" fill="#FFE3A3"/><circle cx="30" cy="58" r="1.5" fill="#FFE3A3"/>')},
-    bolinhasLilas:{nome:'Bolinhas sobre lilás',bg:'#E4D3F6',tile:36,
-      svg:SVGA(36,36,'<rect width="36" height="36" fill="#E4D3F6"/><circle cx="9" cy="9" r="3" fill="#FFE29A"/><circle cx="27" cy="9" r="3" fill="#FFB5CB"/><circle cx="9" cy="27" r="3" fill="#A9E3F5"/><circle cx="27" cy="27" r="3" fill="#B9EBC9"/>')},
-    bolinhasRosa:{nome:'Bolinhas sobre rosa',bg:'#FFD7E5',tile:36,
-      svg:SVGA(36,36,'<rect width="36" height="36" fill="#FFD7E5"/><circle cx="9" cy="9" r="2.6" fill="#fff"/><circle cx="27" cy="9" r="2.6" fill="#FFF0A8"/><circle cx="9" cy="27" r="2.6" fill="#CDE8FF"/><circle cx="27" cy="27" r="2.6" fill="#E6D3F7"/>')},
-    solNuvens:{nome:'Sol e nuvens',bg:'#D8EFFF',tile:72,sw:[44,'-1px -1px'],
-      svg:SVGA(72,72,'<rect width="72" height="72" fill="#D8EFFF"/>'+svgSol(20,20,.9)+svgNuvem(50,50,1)+svgNuvem(54,15,.6)+svgNuvem(14,60,.55)+'<circle cx="38" cy="30" r="1.4" fill="#fff"/><circle cx="66" cy="34" r="1.4" fill="#fff"/>')}
+    listras:{nome:'Listras',bg:'#FFFBF3',tile:65,
+      svg:pt(65,40,'#FFFBF3',['#CBE6F5','#CDEFE0','#FBEFB8','#FBCFE0','#F8DABA'].map((c,i)=>'<rect x="'+(3+i*13)+'" width="7" height="40" fill="'+c+'"/>').join(''))},
+    xadrez:{nome:'Xadrez',bg:'#FFF7FA',tile:30,
+      svg:pt(24,24,'#FFF7FA','<rect width="12" height="24" fill="#F7B9CF" opacity=".42"/><rect width="24" height="12" fill="#F7B9CF" opacity=".42"/>')},
+    arco:{nome:'Arco-íris',bg:'#E3F1FB',tile:80,sw:[64,'-4px -6px'],
+      svg:pt(80,80,'#E3F1FB',svgArco(24,28,.85)+svgArco(62,66,.7)+svgNuvem(66,18,.5)+svgNuvem(14,64,.45)+'<circle cx="44" cy="12" r="1.5" fill="#fff"/><circle cx="46" cy="48" r="1.5" fill="#fff"/><circle cx="6" cy="44" r="1.5" fill="#fff"/><circle cx="76" cy="46" r="1.5" fill="#fff"/>')},
+    ovelha:{nome:'Carneirinho',bg:'#CFE3C8',tile:84,sw:[60,'-6px -8px'],
+      svg:pt(84,84,'#CFE3C8',svgFolha(10,10,-30,.9)+svgFolha(52,8,35,.8,'#B5D6A4')+svgFolha(66,38,-60,.8)+svgFolha(8,52,40,.8,'#B5D6A4')+svgFolha(40,70,-20,.9)+svgFolha(76,76,50,.7,'#B5D6A4')+svgOvelha(30,34,.7)+svgOvelha(62,64,.7)+'<circle cx="46" cy="22" r="1.4" fill="#E9F3DF"/><circle cx="14" cy="76" r="1.4" fill="#E9F3DF"/>')},
+    margaridas:{nome:'Margaridas',bg:'#EADCF7',tile:84,sw:[60,'2px 2px'],
+      svg:pt(84,84,'#EADCF7',svgFolha(30,20,-20,.8,'#BFE8CC')+svgFolha(70,70,30,.8,'#BFE8CC')+svgMargarida(18,18,10)+svgMargarida(60,52,9)+svgMargarida(66,12,5)+svgMargarida(16,66,5)+svgFlor5(42,40,4.5,'#F6B5D0')+svgFlor5(76,34,3.5,'#C9B8F2'))},
+    tulipas:{nome:'Tulipas',bg:'#FFF6D9',tile:84,sw:[60,'1px 0px'],
+      svg:pt(84,84,'#FFF6D9',svgTulipa(20,16,.75,'#FF9DB0')+svgTulipa(62,40,.75,'#FFB58C')+svgTulipa(18,56,.5,'#FFB58C')+'<circle cx="46" cy="10" r="1.5" fill="#FFE3A3"/><circle cx="42" cy="70" r="1.5" fill="#FFE3A3"/><circle cx="78" cy="14" r="1.5" fill="#FFE3A3"/>')},
+    bolinhasLilas:{nome:'Bolinhas sobre lilás',bg:'#E1CFF4',tile:40,
+      svg:pt(40,40,'#E1CFF4','<circle cx="10" cy="10" r="3.4" fill="#FFE29A"/><circle cx="30" cy="10" r="3.4" fill="#FFB5CB"/><circle cx="10" cy="30" r="3.4" fill="#A9E3F5"/><circle cx="30" cy="30" r="3.4" fill="#B9EBC9"/>')},
+    bolinhasRosa:{nome:'Bolinhas sobre rosa',bg:'#FFD3E3',tile:40,
+      svg:pt(40,40,'#FFD3E3','<circle cx="10" cy="10" r="3" fill="#fff"/><circle cx="30" cy="10" r="3" fill="#FFF0A8"/><circle cx="10" cy="30" r="3" fill="#CDE8FF"/><circle cx="30" cy="30" r="3" fill="#E6D3F7"/>')},
+    solNuvens:{nome:'Sol e nuvens',bg:'#D8EFFF',tile:84,sw:[50,'-1px -1px'],
+      svg:pt(84,84,'#D8EFFF',svgSol(22,22,.85)+svgNuvem(60,62,1)+svgNuvem(62,16,.55)+svgNuvem(16,68,.5)+'<circle cx="42" cy="38" r="1.4" fill="#fff"/><circle cx="78" cy="40" r="1.4" fill="#fff"/>')},
+    estrelas:{nome:'Estrelas',bg:'#FFD9BC',tile:36,
+      svg:pt(36,36,'#FFD9BC',svgEstrela(9,9,4.2,'#E8B95A')+svgEstrela(27,27,4.2,'#E8B95A')+'<circle cx="27" cy="9" r="1" fill="#fff"/><circle cx="9" cy="27" r="1" fill="#fff"/>')},
+    coracoes:{nome:'Corações',bg:'#C3EBDA',tile:40,
+      svg:pt(40,40,'#C3EBDA',svgCoracao(10,11,.75,'#F7B3C6')+svgCoracao(30,11,.75,'#FBE19A')+svgCoracao(10,31,.75,'#B9D3F6')+svgCoracao(30,31,.75,'#F8C6A6'))}
   };
   Object.keys(E).forEach(k=>{E[k].url=svgUrl(E[k].svg)});
   ESTAMPAS_=E;return E;
@@ -1488,10 +1509,23 @@ function notaAbrir(id){
   $('#notaTitulo').textContent=n?'Editar Post-it':'Novo Post-it';
   $('#notaT').value=n?n.t:'';$('#notaC').value=n?n.c:'';
   notaCor=n?n.cor:NOTA_CORES[0];notaCores();
-  $('#notaOv').classList.add('on');
+  $('#notaOv').classList.add('on');notaAjustaViewport();
   setTimeout(()=>{try{$('#notaT').focus()}catch(e){}},50);
 }
-function notaFechar(){$('#notaOv').classList.remove('on')}
+function notaFechar(){
+  const ov=$('#notaOv');ov.classList.remove('on');
+  ov.style.top='';ov.style.height='';ov.style.bottom='';
+  ov.querySelector('.nt-modal').classList.remove('cp');
+}
+/* mantém a janela dentro da área visível: quando o teclado abre, ela encolhe e a paleta de cores continua à vista */
+function notaAjustaViewport(){
+  const ov=$('#notaOv');if(!ov||!ov.classList.contains('on'))return;
+  const v=window.visualViewport,m=ov.querySelector('.nt-modal');
+  if(!v)return;
+  ov.style.top=v.offsetTop+'px';ov.style.height=v.height+'px';ov.style.bottom='auto';
+  m.classList.toggle('cp',v.height<620);
+}
+if(window.visualViewport){visualViewport.addEventListener('resize',notaAjustaViewport);visualViewport.addEventListener('scroll',notaAjustaViewport)}
 function notaSalvar(){
   const t=$('#notaT').value.trim(),c=$('#notaC').value.trim();
   if(!t&&!c){toast('Escreva algo na nota 💜');return}
