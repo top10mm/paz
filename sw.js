@@ -1,7 +1,7 @@
 /* Kit Paz – Service Worker
    Guarda o app no celular para funcionar sem internet.
-   >>> A cada versão nova do app, aumente o número em VERSAO (ex.: 'paz-v10.4'). <<< */
-const VERSAO = 'paz-v10.3';
+   >>> A cada versão nova do app, aumente o número em VERSAO (ex.: 'paz-v10.5'). <<< */
+const VERSAO = 'paz-v10.4';
 /* Essenciais: sem eles o app não funciona offline (se faltarem, a instalação falha de propósito) */
 const ESSENCIAIS = ['./', './index.html'];
 /* Opcionais: se algum faltar no endereço publicado, o app continua funcionando offline do mesmo jeito */
