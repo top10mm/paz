@@ -481,6 +481,29 @@ input[type=range]{padding:0;height:34px;border:none;background:transparent;accen
     <div class="nt-grade" id="painelNotas"></div>
   </div>
 
+  <!-- TELA MAIS FERRAMENTAS -->
+  <div class="tela" id="t-ferramentas">
+    <div class="card">
+      <h2>⚙️ Mais Ferramentas</h2>
+      <h3 class="lic-h">Seu nome</h3>
+      <p class="sub">É o nome que aparece na tela inicial. Você pode mudá-lo quando quiser.</p>
+      <input id="nomeEdit" type="text" maxlength="20" placeholder="Seu nome" autocomplete="off" style="margin-top:10px" onkeydown="if(event.key==='Enter'){event.preventDefault();salvarNomeEdit()}">
+      <button class="btn btn-suave" style="margin-top:10px" onclick="salvarNomeEdit()">Salvar nome</button>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h3 class="lic-h" style="margin-top:0">Seus dados</h3>
+      <p class="sub">Tudo o que você registra fica só neste aparelho: nome, mapa, notas, contato de confiança... Faça um backup de vez em quando, para não perder nada.</p>
+      <button class="btn btn-suave" style="margin-top:14px" onclick="fazerBackup()">💾 Backup</button>
+      <p class="sub" style="font-size:.75rem;margin-top:4px">Salva um arquivo na pasta Downloads do aparelho. Guarde-o em lugar seguro: ele contém suas anotações e o contato de confiança.</p>
+      <button class="btn btn-fantasma" style="margin-top:14px" onclick="restaurarBackup()">📂 Restaurar</button>
+      <p class="sub" style="font-size:.75rem;margin-top:4px">Escolha um arquivo de backup do Kit Paz. Os dados atuais serão substituídos pelos do arquivo.</p>
+      <input type="file" id="arqBackup" accept=".json,application/json" style="display:none" onchange="lerBackup(event)">
+      <button class="btn btn-rosa" style="margin-top:20px" onclick="apagarTudo()">🗑️ Apagar todos os dados registrados</button>
+      <p class="sub" style="font-size:.75rem;margin-top:4px">Apaga tudo o que foi gravado neste aparelho. Não dá para desfazer; se quiser guardar, faça um Backup antes.</p>
+    </div>
+    <button class="btn btn-fantasma" style="margin-top:16px" onclick="ir('t-sobre')">Voltar ao Sobre</button>
+  </div>
+
   <!-- TELA LICENÇA -->
   <div class="tela" id="t-licenca">
     <div class="card">
@@ -646,7 +669,7 @@ d. Rights beyond those granted in this Public License are completely reserved by
     </div>
     <div class="card" style="text-align:center">
       <p class="sub">📅 Início do Projeto: Outubro/2026</p>
-      <p class="sub" style="margin-top:6px">✨ <b>Kit Paz – Anticrises</b> (versão 10.2)</p>
+      <p class="sub" style="margin-top:6px">✨ <b>Kit Paz – Anticrises</b> (versão 10.3)</p>
       <p class="sub" style="margin-top:6px">📧 top10mm@myyahoo.com</p>
       <button class="btn btn-suave" style="margin-top:16px" onclick="location.href='mailto:top10mm@myyahoo.com'">Enviar e-mail 💌</button>
       <div style="margin-top:18px;padding-top:14px;border-top:1px dashed #E3D8F6;text-align:left">
@@ -658,6 +681,7 @@ d. Rights beyond those granted in this Public License are completely reserved by
       </div>
     </div>
     <button class="btn btn-suave" style="margin-top:16px" onclick="ir('t-licenca')">📜 Licença e créditos</button>
+    <button class="btn btn-suave" style="margin-top:12px" onclick="ir('t-ferramentas')">⚙️ Mais Ferramentas</button>
   </div>
 </div>
 
@@ -767,8 +791,8 @@ function iniciarApp(){
 function ir(id){
   $$('.tela').forEach(t=>t.classList.remove('ativa'));
   $('#'+id).classList.add('ativa');
-  $$('.nav').forEach(n=>n.classList.toggle('sel',n.dataset.t===(id==='t-licenca'?'t-sobre':id)));
-  if(id==='t-kit')renderKit();if(id==='t-mapa')renderStats();if(id==='t-sos')sosVerificaLocal();if(id==='t-sobre')atualizaStatusApp();
+  $$('.nav').forEach(n=>n.classList.toggle('sel',n.dataset.t===((id==='t-licenca'||id==='t-ferramentas')?'t-sobre':id)));
+  if(id==='t-kit')renderKit();if(id==='t-mapa')renderStats();if(id==='t-sos')sosVerificaLocal();if(id==='t-sobre')atualizaStatusApp();if(id==='t-ferramentas')$('#nomeEdit').value=D.nome||'';
   const kitNav=$('.nav[data-t="t-kit"]');if(kitNav)kitNav.classList.toggle('pisca',id==='t-inicio');
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -862,7 +886,7 @@ function rodarCiclo(){
   if(ciclo>=6){fimRespiracao();return}
   ciclo++;$('#cicloTxt').textContent='ciclo '+ciclo+' de 6';
   const b=$('#bolha');
-  b.className='bolha inspira';$('#faseTxt').textContent='Inspire… 🌬️';
+  b.className='bolha inspira';$('#faseTxt').textContent='Respire… 🌬️';
   falar('Respire... fundo... pelo nariz.');
   respTimer=setTimeout(()=>{
     b.className='bolha segura';$('#faseTxt').textContent='Segure ✨';
@@ -1658,7 +1682,7 @@ function salvarContato(){
   D.contato={nome,tel};gravar();atualizarSosInfo();toast('Contato salvo 🤝');
 }
 function atualizarSosInfo(){
-  $('#sosInfo').textContent='Contato salvo: '+D.contato.nome+' ('+D.contato.tel+')';
+  $('#sosInfo').textContent=D.contato?'Contato salvo: '+D.contato.nome+' ('+D.contato.tel+')':'';
 }
 /* última posição conhecida (guardada só na memória, até 2 min) para o envio ser rápido */
 let posCache=null;
@@ -1693,6 +1717,72 @@ function sosVerificaLocal(){
       else if(r.state==='granted')navigator.geolocation.getCurrentPosition(p=>{posCache={p:p,t:Date.now()}},()=>{},{maximumAge:300000,timeout:10000});
     }).catch(()=>{});
   }
+}
+
+/* ===== MAIS FERRAMENTAS: nome, backup, restaurar, apagar ===== */
+const APP_VERSAO='10.3';
+function salvarNomeEdit(){
+  const n=$('#nomeEdit').value.trim();
+  if(!n){toast('Escreva um nome 💜');return}
+  D.nome=n;gravar();iniciarApp();toast('Nome atualizado 💜');
+}
+function fazerBackup(){
+  const ag=new Date(),p=x=>String(x).padStart(2,'0');
+  const arq='kit-paz-backup-'+ag.getFullYear()+'-'+p(ag.getMonth()+1)+'-'+p(ag.getDate())+'_'+p(ag.getHours())+'h'+p(ag.getMinutes())+'.json';
+  const pacote={app:'Kit Paz – Anticrises',tipo:'backup',versao:APP_VERSAO,criadoEm:ag.toISOString(),dados:D};
+  try{
+    const blob=new Blob([JSON.stringify(pacote,null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');a.href=url;a.download=arq;a.style.display='none';
+    document.body.appendChild(a);a.click();
+    setTimeout(()=>{a.remove();URL.revokeObjectURL(url)},2000);
+    toast('Backup criado. Veja na pasta Downloads 💾');
+  }catch(e){toast('Não consegui criar o backup neste navegador')}
+}
+function restaurarBackup(){const i=$('#arqBackup');i.value='';i.click()}
+/* confere e limpa os dados de um backup antes de aplicar (devolve null se não parecer um backup do app) */
+function validaDados(d){
+  if(!d||typeof d!=='object'||Array.isArray(d))return null;
+  if(!['nome','crise','humor','notas','contato'].some(k=>k in d))return null;
+  const arr=x=>Array.isArray(x)?x:[];
+  const r={};
+  r.nome=(typeof d.nome==='string'&&d.nome.trim())?d.nome.trim().slice(0,20):(D.nome||'');
+  r.humor=arr(d.humor).filter(o=>o&&typeof o==='object').map(o=>({d:String(o.d||''),v:+o.v||0,f:arr(o.f).map(String)}));
+  r.crise=arr(d.crise).filter(o=>o&&typeof o==='object'&&isFinite(+o.ts)).map(o=>{
+    const a=+o.antes||0,b=+o.depois||0;
+    return {ts:+o.ts,antes:a,depois:b,delta:isFinite(+o.delta)&&o.delta!==null?+o.delta:a-b,tec:String(o.tec||''),gatilhos:arr(o.gatilhos).map(String)};
+  });
+  r.notas=arr(d.notas).filter(o=>o&&typeof o==='object'&&typeof o.id==='string').map(o=>({id:o.id,t:String(o.t||'').slice(0,40),c:String(o.c||'').slice(0,500),cor:String(o.cor||'#FFF59D'),ts:+o.ts||Date.now()}));
+  r.contato=(d.contato&&typeof d.contato==='object')?{nome:String(d.contato.nome||'').slice(0,40),tel:String(d.contato.tel||'').replace(/\D/g,'').slice(0,13)}:null;
+  if(typeof d.lembrete==='boolean')r.lembrete=d.lembrete;
+  return r;
+}
+function lerBackup(ev){
+  const f=ev.target.files&&ev.target.files[0];if(!f)return;
+  const rd=new FileReader();
+  rd.onerror=()=>toast('Não consegui ler o arquivo');
+  rd.onload=()=>{
+    let obj;try{obj=JSON.parse(rd.result)}catch(e){toast('Arquivo inválido: não parece um backup do Kit Paz');return}
+    const v=validaDados(obj&&obj.dados&&typeof obj.dados==='object'?obj.dados:obj);
+    if(!v){toast('Arquivo inválido: não parece um backup do Kit Paz');return}
+    let quando='';
+    if(obj&&obj.criadoEm){try{quando='Criado em '+new Date(obj.criadoEm).toLocaleString('pt-BR')+'.\n'}catch(e){}}
+    const resumo=quando+'Contém: '+v.crise.length+' registro(s) de atividades, '+v.notas.length+' nota(s)'+(v.contato?' e o contato de confiança':'')+'.';
+    if(!confirm('Restaurar este backup vai SUBSTITUIR todos os dados atuais pelos do arquivo.\n\n'+resumo+'\n\nDeseja continuar?'))return;
+    Object.keys(D).forEach(k=>delete D[k]);Object.assign(D,v);gravar();
+    $('#nomeContato').value=D.contato?D.contato.nome:'';$('#telContato').value=D.contato?D.contato.tel:'';
+    atualizarSosInfo();iniciarApp();
+    $('#nomeEdit').value=D.nome||'';
+    toast('Backup restaurado! 💜');
+  };
+  rd.readAsText(f);
+}
+function apagarTudo(){
+  if(!confirm('Apagar TODOS os dados registrados?\n\nIsso remove, deste aparelho, o seu nome, o mapa, as notas e o contato de confiança. Não dá para desfazer.\n\nDica: faça um Backup antes, se quiser guardar.'))return;
+  if(!confirm('Tem certeza? Esta é a última confirmação.'))return;
+  try{localStorage.removeItem('paz')}catch(e){}
+  Object.keys(D).forEach(k=>delete D[k]);
+  location.reload();
 }
 
 /* ===== PWA: funcionar offline e permitir instalação ===== */
