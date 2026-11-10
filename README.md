@@ -14,7 +14,7 @@ O aplicativo pode ser usado **pela internet (online)**, tanto no celular quanto 
 * 🆘 **SOS:** pede ajuda ao contato de confiança pelo WhatsApp, com a sua localização.
 * 📝 **Notas estilo post-it,** com cores e estampas fofas: metas, conquistas, ideias… até a lista do supermercado.
 * 🔐 **Dados só no seu celular,** com Backup, Restaurar e Apagar.
-* 💜 **Gratuito, sem propaganda e sem cadastro.**
+* 💜 **Gratuito, sem propaganda, sem cadastro, e pode ser compartilhado livremente.**
 
 ### 📲 Como instalar no celular
 
@@ -64,6 +64,7 @@ Para pedir autorização de uso além do que a licença permite, entre em contat
 
 ### ⚠️ Observações importantes
 
+* **Projeto sem fins lucrativos ou comerciais:** o aplicativo é totalmente gratuito e foi feito para ajudar pessoas. O uso comercial não é permitido (veja a licença acima).
 * **Apoio emocional, não tratamento:** o aplicativo é uma ferramenta de apoio emocional e não substitui o acompanhamento médico ou de profissional habilitado, pois as crises podem ser graves. Em situação de risco, ligue para o **188 (CVV, 24 horas, gratuito)** ou para o **192 (SAMU)**.
 * **Privacidade:** nome, registros do mapa, notas e contato de confiança ficam **somente no seu aparelho**. O aplicativo não tem conta nem servidor para guardar seus dados. A localização só é enviada quando você aciona o botão de pedir ajuda, para o contato que você escolheu.
 * **Isenção de responsabilidade:** o desenvolvedor deste aplicativo não se responsabiliza por quaisquer danos, sejam eles materiais, pessoais ou de outra natureza, decorrentes do uso indevido ou fora da proposta do aplicativo, nem por eventuais falhas ou erros que possam ocorrer durante a sua execução. O aplicativo é fornecido "como está", sem garantia de funcionamento ininterrupto.
