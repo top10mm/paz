@@ -8,7 +8,7 @@ O aplicativo pode ser usado **pela internet (online)**, tanto no celular quanto 
 
 ### ✨ Principais recursos
 
-* 🎒 **Kit de técnicas:** respiração guiada por voz, Tai Chi Chi Kung, cromoterapia, músicas relaxantes, aterramento 5-4-3-2-1, ritual do sono e mais.
+* 🎒 **Kit de técnicas:** Respiração Guiada Por Voz, Tai Chi Chi Kung - by Keiko, Cromoterapia, Músicas Relaxantes, Aterramento, Ritual do Sono, Frases Motivacionais Diárias e outras técnicas.
 * 🧠 **Aprende com você:** coloca no topo as técnicas que mais te aliviaram nos últimos 30 dias.
 * 🗓️ **Mapa:** registra e pontua as práticas de cada dia e mostra seus padrões.
 * 🆘 **SOS:** pede ajuda ao contato de confiança pelo WhatsApp, com a sua localização.
