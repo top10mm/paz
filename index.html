@@ -105,6 +105,8 @@ input:focus,textarea:focus{border-color:var(--lavanda)}
 .pd-barra{flex:1;height:10px;background:#EFE7FA;border-radius:99px;overflow:hidden}
 .pd-barra i{display:block;height:100%;border-radius:99px}
 /* LICENÇA */
+.rd-h{font-size:1.08rem;font-weight:800;color:var(--texto);margin:20px 0 8px}
+.rd-h:first-child{margin-top:0}
 .lic-h{font-size:.95rem;font-weight:800;color:#6B4FA0;margin:16px 0 6px}
 .lic-ul{margin:8px 0 0 18px;padding:0;color:var(--texto2);font-size:.88rem;line-height:1.45}
 .lic-ul li{margin-top:6px}
@@ -266,6 +268,9 @@ input[type=range]{padding:0;height:34px;border:none;background:transparent;accen
   <!-- TELA INÍCIO -->
   <div class="tela ativa" id="t-inicio">
     <div class="card">
+      <p class="sub">O Kit Paz - Anticrises é seu companheiro de bolso para momentos de ansiedade, pânico e sobrecarga.</p>
+    </div>
+    <div class="card" style="margin-top:16px">
       <div class="cab-k"><h2>🧘 Sua paz do dia</h2></div>
       <p class="sub" id="fraseDia" style="margin-top:8px"></p>
     </div>
@@ -464,6 +469,7 @@ input[type=range]{padding:0;height:34px;border:none;background:transparent;accen
       <button class="btn btn-suave" style="margin-top:12px" onclick="salvarContato()">Salvar contato</button>
     </div>
     <button class="btn btn-rosa" style="padding:22px;font-size:1.1rem" onclick="pedirAjuda()">💗 PEDIR AJUDA AGORA</button>
+    <p class="sub" style="text-align:center;margin:8px 4px 0;font-size:.78rem">📶 O envio da mensagem pelo WhatsApp precisa de internet.</p>
     <p class="sub" id="sosLoc" style="display:none;margin:10px 4px 0;font-size:.78rem;color:#A23A63"></p>
     <p class="sub" style="text-align:center;margin-top:12px" id="sosInfo"></p>
     <div class="card" style="margin-top:16px">
@@ -509,20 +515,43 @@ input[type=range]{padding:0;height:34px;border:none;background:transparent;accen
   <!-- TELA LICENÇA -->
   <div class="tela" id="t-licenca">
     <div class="card">
+      <h3 class="rd-h">📱 Kit Paz - Anticrises</h3>
+      <p class="sub">O <b>Kit Paz - Anticrises</b> é um aplicativo web projetado para oferecer suporte e ferramentas práticas em momentos de crise, combinando uma interface intuitiva, áudios e músicas internas selecionadas para proporcionar tranquilidade e foco. Ele é o seu <b>companheiro de bolso</b> para momentos de ansiedade, pânico e sobrecarga.</p>
+      <p class="sub" style="margin-top:8px">O aplicativo pode ser usado <b>pela internet (online)</b>, tanto no celular quanto no computador, ou <b>instalado como app</b>. Depois de instalado, funciona <b>offline</b>, sem precisar de internet, com uma exceção: o botão <b>SOS (Pedir Ajuda)</b>, que precisa de internet porque envia, pelo WhatsApp, a mensagem de ajuda com a sua localização para o contato salvo.</p>
+      <p class="sub" style="margin-top:8px">🚀 <b>Acesse o aplicativo rodando em:</b> <a class="lic-a" href="https://top10mm.github.io/paz/" target="_blank" rel="noopener">https://top10mm.github.io/paz/</a></p>
+      <h3 class="rd-h">✨ Principais recursos</h3>
+      <ul class="lic-ul">
+        <li>🎒 <b>Kit de técnicas:</b> Respiração Guiada Por Voz, Tai Chi Chi Kung - by Keiko, Cromoterapia, Músicas Relaxantes, Aterramento, Ritual do Sono, Frases Motivacionais Diárias e outras técnicas.</li>
+        <li>🧠 <b>Aprende com você:</b> coloca no topo as técnicas que mais te aliviaram nos últimos 30 dias.</li>
+        <li>🗓️ <b>Mapa:</b> registra e pontua as práticas de cada dia e mostra seus padrões.</li>
+        <li>🆘 <b>SOS:</b> pede ajuda ao contato de confiança pelo WhatsApp, com a sua localização.</li>
+        <li>📝 <b>Notas estilo post-it,</b> com cores e estampas fofas: metas, conquistas, ideias… até a lista do supermercado.</li>
+        <li>🔐 <b>Dados só no seu celular,</b> com Backup, Restaurar e Apagar.</li>
+        <li>💜 <b>Gratuito, sem propaganda, sem cadastro, e pode ser compartilhado livremente.</b></li>
+      </ul>
+      <h3 class="rd-h">📲 Como instalar no celular</h3>
+      <p class="sub">Na barra superior do aplicativo, acesse ❓ <b>Sobre</b>, role a página e clique no botão <b>Instalar aplicativo</b>, ou use o menu do navegador:</p>
+      <ul class="lic-ul">
+        <li><b>Android (Chrome):</b> abra o link, toque no menu ⋮ e escolha <b>Instalar aplicativo</b>.</li>
+        <li><b>iPhone (Safari):</b> abra o link, toque em <b>Compartilhar</b> e depois em <b>Adicionar à Tela de Início</b>. No iPhone o botão <b>Instalar aplicativo</b> não aparece, então use sempre esse caminho.</li>
+        <li>Na primeira vez, é preciso estar com a internet ligada para que o app seja salvo no aparelho. Depois disso, ele abre e funciona sem internet.</li>
+      </ul>
+      <h3 class="rd-h">🎯 Sobre o Projeto</h3>
+      <p class="sub">Este aplicativo foi desenvolvido com o objetivo de centralizar recursos acessíveis de apoio emocional, áudio e música em uma experiência web leve e rápida, que pode ser realizada diretamente do navegador, tanto no computador quanto no celular.</p>
+    </div>
+    <div class="card" style="margin-top:16px">
       <h2>📜 Licença e créditos</h2>
       <p class="sub" style="margin-top:8px"><b>Kit Paz – Anticrises</b></p>
       <h3 class="lic-h">⚖️ Licença e Direitos Autorais</h3>
-      <p class="sub">Este projeto está protegido legalmente. O código-fonte, a arquitetura de software, a interface gráfica, o design e a lógica de funcionamento deste aplicativo estão licenciados sob a licença internacional:</p>
+      <p class="sub" style="margin-top:8px">Este projeto está protegido legalmente. O código-fonte, a arquitetura de software, a interface gráfica, o design e a lógica de funcionamento deste aplicativo estão licenciados sob a licença internacional:</p>
       <p class="sub" style="margin-top:8px"><b>Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)</b></p>
-      <p class="sub" style="margin-top:8px">Isso significa que qualquer visitante ou desenvolvedor que acessar este aplicativo ou o seu repositório público deve respeitar as seguintes condições:</p>
-      <ul class="lic-ul">
-        <li><b>Atribuição (Attribution):</b> você deve dar o crédito apropriado ao autor original (<b>Marcelo Carrubba / top10mm</b>) e fornecer um link para o repositório original caso mencione o projeto.</li>
-        <li><b>Não Comercial (NonCommercial):</b> você <b>não pode</b> utilizar o código, o design ou os recursos deste aplicativo para fins comerciais ou lucrativos de qualquer natureza.</li>
-        <li><b>Sem Derivações (NoDerivatives):</b> você <b>não pode</b> alterar, remixar, transformar ou criar uma nova versão (obra derivada) baseada na estrutura ou no código deste aplicativo.</li>
-      </ul>
-      <p class="sub" style="margin-top:8px">Os termos jurídicos completos (em inglês) estão no fim desta tela e no arquivo LICENSE do repositório.</p>
+      <p class="sub" style="margin-top:8px">Isso significa que qualquer visitante ou desenvolvedor que acessar este repositório público deve respeitar as seguintes condições:</p>
+      <ul class="lic-ul"><li><b>Atribuição (Attribution):</b> Você deve dar o crédito apropriado ao autor original (<b>Marcelo Carrubba / top10mm</b>) e fornecer um link para este repositório original caso mencione o projeto.</li><li><b>Não Comercial (NonCommercial):</b> Você <b>não pode</b> utilizar o código, o design ou os recursos deste aplicativo para fins comerciais ou lucrativos de qualquer natureza.</li><li><b>Sem Derivações (NoDerivatives):</b> Você <b>não pode</b> alterar, remixar, transformar ou criar uma nova versão (obra derivada) baseada na estrutura ou no código deste aplicativo.</li></ul>
+      <p class="sub" style="margin-top:8px">Para ler os termos jurídicos e contratuais completos em inglês, consulte o arquivo <a class="lic-a" href="https://github.com/top10mm/paz/blob/main/LICENSE" target="_blank" rel="noopener">LICENSE</a> presente na raiz deste repositório.</p>
+      <p class="sub" style="margin-top:8px">Para pedir autorização de uso além do que a licença permite, entre em contato pelo e-mail indicado na seção <b>Autor</b>.</p>
+      <p class="sub" style="font-size:.72rem;margin-top:8px">O texto completo da licença, em inglês, também está no fim desta tela.</p>
       <h3 class="lic-h">👤 Autor</h3>
-      <p class="sub"><b>Desenvolvedor:</b> Marcelo Carrubba<br><b>GitHub:</b> <a class="lic-a" href="https://github.com/top10mm" target="_blank" rel="noopener">@top10mm</a><br><b>Repositório original:</b> <a class="lic-a" href="https://github.com/top10mm/paz" target="_blank" rel="noopener">github.com/top10mm/paz</a></p>
+      <ul class="lic-ul"><li><b>Desenvolvedor:</b> Marcelo Carrubba</li><li><b>GitHub:</b> <a class="lic-a" href="https://github.com/top10mm" target="_blank" rel="noopener">@top10mm</a></li><li><b>Repositório Original:</b> <a class="lic-a" href="https://github.com/top10mm/paz" target="_blank" rel="noopener">https://github.com/top10mm/paz</a></li><li><b>Contato:</b> top10mm@myyahoo.com</li></ul>
     </div>
     <div class="card" style="margin-top:16px">
       <h3 class="lic-h" style="margin-top:0">🎧 Créditos e conteúdos de terceiros</h3>
@@ -533,9 +562,8 @@ input[type=range]{padding:0;height:34px;border:none;background:transparent;accen
       </ul>
     </div>
     <div class="card" style="margin-top:16px">
-      <h3 class="lic-h" style="margin-top:0">💗 Aviso importante</h3>
-      <p class="sub">O aplicativo é uma ferramenta de apoio emocional, não é um tratamento. Não substitui o acompanhamento médico e/ou de profissional adequado, principalmente para quem se encontra com crises, cuja intensidade pode ser grave.</p>
-      <p class="sub" style="margin-top:8px">Se estiver em risco ou pensando em se machucar, ligue <b>188</b> (CVV, 24h, gratuito) ou <b>192</b> (SAMU).</p>
+      <h3 class="lic-h" style="margin-top:0">⚠️ Observações importantes</h3>
+      <ul class="lic-ul"><li><b>Projeto sem fins lucrativos ou comerciais:</b> o aplicativo é totalmente gratuito e foi feito para ajudar pessoas. O uso comercial não é permitido (veja a licença acima).</li><li><b>Apoio emocional, não tratamento:</b> o aplicativo é uma ferramenta de apoio emocional e não substitui o acompanhamento médico ou de profissional habilitado, pois as crises podem ser graves. Em situação de risco, ligue para o <b>188 (CVV, 24 horas, gratuito)</b> ou para o <b>192 (SAMU)</b>.</li><li><b>Privacidade:</b> nome, registros do mapa, notas e contato de confiança ficam <b>somente no seu aparelho</b>. O aplicativo não tem conta nem servidor para guardar seus dados. A localização só é enviada quando você aciona o botão de pedir ajuda, para o contato que você escolheu.</li><li><b>Isenção de responsabilidade:</b> o desenvolvedor deste aplicativo não se responsabiliza por quaisquer danos, sejam eles materiais, pessoais ou de outra natureza, decorrentes do uso indevido ou fora da proposta do aplicativo, nem por eventuais falhas ou erros que possam ocorrer durante a sua execução. O aplicativo é fornecido "como está", sem garantia de funcionamento ininterrupto.</li></ul>
     </div>
     <div class="card" style="margin-top:16px">
       <details class="lic-det" id="licTexto">
@@ -659,9 +687,9 @@ d. Rights beyond those granted in this Public License are completely reserved by
         O aplicativo <b>“Kit Paz – Anticrises”</b> é um projeto <b>sem fins lucrativos</b>, e nasceu de uma necessidade que percebo muito pronunciada no mundo atual. Tem como objetivo ajudar pessoas, buscando sua paz interior, harmonizando sua vida.
       </p>
       <p class="sub" style="text-align:left;line-height:1.7;margin-top:10px">
-        Tenho o prazer de disponibilizar pra você este aplicativo de uso pessoal, <b>totalmente gratuito</b>. Você pode acessá-lo sempre que precisar, podendo divulgar e distribuí-lo livremente.<br>
+        Tenho o prazer de disponibilizar pra você este aplicativo de uso pessoal, <b>totalmente gratuito</b>. Você pode acessá-lo sempre que precisar, podendo divulgar e distribuí-lo livremente, mantendo os créditos e sem alterações.<br>
         <b>Não é permitido modificá-lo sem minha permissão, e nem usá-lo para fins comerciais.</b><br>
-        <b>O aplicativo é uma ferramenta de apoio emocional, não é um tratamento. Não substitui o acompanhamento médico e/ou de profissional adequado, principalmente pra quem se encontra com crises, cuja intensidade destas, pode ser grave.</b>
+        <b>Apoio emocional, não tratamento: o aplicativo é uma ferramenta de apoio emocional e não substitui o acompanhamento médico ou de profissional habilitado, pois as crises podem ser graves.</b>
       </p>
     </div>
     <div class="card">
@@ -671,11 +699,12 @@ d. Rights beyond those granted in this Public License are completely reserved by
     </div>
     <div class="card" style="text-align:center">
       <p class="sub">📅 Início do Projeto: Outubro/2026</p>
-      <p class="sub" style="margin-top:6px">✨ <b>Kit Paz – Anticrises</b> (versão 10.4)</p>
+      <p class="sub" style="margin-top:6px">✨ <b>Kit Paz – Anticrises</b> (versão 10.6)</p>
       <p class="sub" style="margin-top:6px">📧 top10mm@myyahoo.com</p>
       <button class="btn btn-suave" style="margin-top:16px" onclick="location.href='mailto:top10mm@myyahoo.com'">Enviar e-mail 💌</button>
       <div style="margin-top:18px;padding-top:14px;border-top:1px dashed #E3D8F6;text-align:left">
         <p class="sub" style="font-weight:700;color:#9A7FE0;text-align:center">📲 Aplicativo</p>
+        <p class="sub" style="margin-top:6px">Pode ser usado <b>online</b>, pelo navegador, no celular ou no computador, ou <b>instalado como app</b>. Instalado, funciona <b>offline</b>, com exceção do botão <b>SOS (Pedir Ajuda)</b>, que precisa de internet.</p>
         <p class="sub" id="stModo" style="margin-top:6px"></p>
         <p class="sub" id="stOffline" style="margin-top:6px"></p>
         <button class="btn btn-menta" id="btnInstalar" style="display:none;margin-top:10px" onclick="instalarApp()">📲 Instalar aplicativo</button>
