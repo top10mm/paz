@@ -115,6 +115,24 @@ input:focus,textarea:focus{border-color:var(--lavanda)}
 .lic-det summary::-webkit-details-marker{display:none}
 .lic-dica{display:block;font-weight:600;font-size:.72rem;color:#9A7FE0;margin-top:3px}
 .lic-pre{margin:14px 0 0;font-family:inherit;font-size:.72rem;line-height:1.5;color:var(--texto2);white-space:pre-wrap;word-break:break-word}
+/* ESTRATÉGIAS RÁPIDAS */
+.er-card{background:#E5D3F5;padding:18px 14px 18px}
+.er-titulo{text-align:center;margin:0 0 18px;line-height:1.6}
+.er-titulo span{font-family:Georgia,'Times New Roman',serif;font-weight:800;font-size:1.22rem;color:#F0500F;background:linear-gradient(transparent 8%,#FFE08A 8%,#FFE08A 94%,transparent 94%);padding:2px 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.er-lista{display:flex;flex-direction:column;gap:13px}
+.er-linha{display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1.15fr);align-items:center;gap:6px}
+.er-esq,.er-dir{display:flex;align-items:center;gap:7px;min-width:0}
+.er-ico{font-size:1.45rem;flex:0 0 auto;width:30px;text-align:center;line-height:1}
+.er-txt{color:#D4168C;font-weight:800;font-size:.92rem;line-height:1.15}
+.er-txt2{color:#4F5A1C;font-weight:800;font-size:.88rem;line-height:1.2;background:linear-gradient(transparent 8%,#FFE69B 8%,#FFE69B 94%,transparent 94%);padding:3px 7px;border-radius:5px}
+.er-seta{width:40px;height:22px;display:block}
+/* telas bem estreitas (320 px): a barra com 7 botões continua cabendo */
+@media (max-width:350px){.nav{padding:4px 3px;font-size:.55rem}.barra{padding:8px 3px}}
+/* BOTÃO SAÍDA */
+.nav-sair{color:#C62828}
+.nav-sair span{display:flex;align-items:center;justify-content:center;height:1.45rem}
+.sair-ov{position:fixed;inset:0;z-index:400;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;background:linear-gradient(160deg,#F1E8FF,#FFE9F2)}
+.sair-ov.on{display:flex}
 /* NOTAS (POST-ITS) */
 .nt-topo{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px}
 .nt-desc{flex-basis:100%;margin:0}
@@ -262,6 +280,7 @@ input[type=range]{padding:0;height:34px;border:none;background:transparent;accen
     <button class="nav" data-t="t-sos"><span>🤝</span>SOS</button>
     <button class="nav" data-t="t-notas"><span>📝</span>Notas</button>
     <button class="nav" data-t="t-sobre"><span>❓</span>Sobre</button>
+    <button class="nav nav-sair" onclick="sairApp()" aria-label="Sair do aplicativo"><span><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="2.5" y="2" width="16" height="20" rx="1.5" fill="#FFE3E3" stroke="#8E1B1B" stroke-width="1.4"/><path d="M4.5 3.6 L16 5.3 V20.4 L4.5 21.2 Z" fill="#E53935" stroke="#8E1B1B" stroke-width="1.2" stroke-linejoin="round"/><circle cx="13.6" cy="12.8" r="1.05" fill="#FFD54F" stroke="#8E1B1B" stroke-width=".5"/><path d="M20 8.2 Q22.2 12.2 20 16.2" stroke="#E53935" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></span>Saída</button>
   </div>
 </div>
 
@@ -512,6 +531,24 @@ input[type=range]{padding:0;height:34px;border:none;background:transparent;accen
     <button class="btn btn-fantasma" style="margin-top:16px" onclick="ir('t-sobre')">Voltar ao Sobre</button>
   </div>
 
+  <!-- TELA ESTRATÉGIAS RÁPIDAS -->
+  <div class="tela" id="t-rapidas">
+    <div class="card er-card">
+      <h2 class="er-titulo"><span>Como se sentir melhor instantaneamente</span></h2>
+      <div class="er-lista">
+        <div class="er-linha"><div class="er-esq"><span class="er-ico">😠</span><span class="er-txt">Com raiva</span></div><svg class="er-seta" viewBox="0 0 44 22" aria-hidden="true"><path d="M2 7 H26 V2.5 L41.5 11 L26 19.5 V15 H2 Z" fill="#F2F230" stroke="#FF6B1A" stroke-width="2" stroke-linejoin="round"/></svg><div class="er-dir"><span class="er-ico">🎤</span><span class="er-txt2">Cantar</span></div></div>
+        <div class="er-linha"><div class="er-esq"><span class="er-ico">🔋</span><span class="er-txt">Esgotado</span></div><svg class="er-seta" viewBox="0 0 44 22" aria-hidden="true"><path d="M2 7 H26 V2.5 L41.5 11 L26 19.5 V15 H2 Z" fill="#F2F230" stroke="#FF6B1A" stroke-width="2" stroke-linejoin="round"/></svg><div class="er-dir"><span class="er-ico">🚶</span><span class="er-txt2">Caminhar</span></div></div>
+        <div class="er-linha"><div class="er-esq"><span class="er-ico">🧠</span><span class="er-txt">Pensando demais</span></div><svg class="er-seta" viewBox="0 0 44 22" aria-hidden="true"><path d="M2 7 H26 V2.5 L41.5 11 L26 19.5 V15 H2 Z" fill="#F2F230" stroke="#FF6B1A" stroke-width="2" stroke-linejoin="round"/></svg><div class="er-dir"><span class="er-ico">📝</span><span class="er-txt2">Escrever</span></div></div>
+        <div class="er-linha"><div class="er-esq"><span class="er-ico">😰</span><span class="er-txt">Ansioso</span></div><svg class="er-seta" viewBox="0 0 44 22" aria-hidden="true"><path d="M2 7 H26 V2.5 L41.5 11 L26 19.5 V15 H2 Z" fill="#F2F230" stroke="#FF6B1A" stroke-width="2" stroke-linejoin="round"/></svg><div class="er-dir"><span class="er-ico">🌬️</span><span class="er-txt2">Respirar</span></div></div>
+        <div class="er-linha"><div class="er-esq"><span class="er-ico">😤</span><span class="er-txt">Estressado</span></div><svg class="er-seta" viewBox="0 0 44 22" aria-hidden="true"><path d="M2 7 H26 V2.5 L41.5 11 L26 19.5 V15 H2 Z" fill="#F2F230" stroke="#FF6B1A" stroke-width="2" stroke-linejoin="round"/></svg><div class="er-dir"><span class="er-ico">💪</span><span class="er-txt2">Exercitar-se</span></div></div>
+        <div class="er-linha"><div class="er-esq"><span class="er-ico">😢</span><span class="er-txt">Triste</span></div><svg class="er-seta" viewBox="0 0 44 22" aria-hidden="true"><path d="M2 7 H26 V2.5 L41.5 11 L26 19.5 V15 H2 Z" fill="#F2F230" stroke="#FF6B1A" stroke-width="2" stroke-linejoin="round"/></svg><div class="er-dir"><span class="er-ico">🙏</span><span class="er-txt2">Expressar Gratidão</span></div></div>
+        <div class="er-linha"><div class="er-esq"><span class="er-ico">😴</span><span class="er-txt">Preguiçoso</span></div><svg class="er-seta" viewBox="0 0 44 22" aria-hidden="true"><path d="M2 7 H26 V2.5 L41.5 11 L26 19.5 V15 H2 Z" fill="#F2F230" stroke="#FF6B1A" stroke-width="2" stroke-linejoin="round"/></svg><div class="er-dir"><span class="er-ico">🚿</span><span class="er-txt2">Banho frio</span></div></div>
+        <div class="er-linha"><div class="er-esq"><span class="er-ico">⏳</span><span class="er-txt">Impaciente</span></div><svg class="er-seta" viewBox="0 0 44 22" aria-hidden="true"><path d="M2 7 H26 V2.5 L41.5 11 L26 19.5 V15 H2 Z" fill="#F2F230" stroke="#FF6B1A" stroke-width="2" stroke-linejoin="round"/></svg><div class="er-dir"><span class="er-ico">📈</span><span class="er-txt2">Refletir sobre o progresso</span></div></div>
+      </div>
+    </div>
+    <button class="btn btn-fantasma" style="margin-top:16px" onclick="ir('t-kit')">Voltar ao Kit</button>
+  </div>
+
   <!-- TELA LICENÇA -->
   <div class="tela" id="t-licenca">
     <div class="card">
@@ -699,7 +736,7 @@ d. Rights beyond those granted in this Public License are completely reserved by
     </div>
     <div class="card" style="text-align:center">
       <p class="sub">📅 Início do Projeto: Outubro/2026</p>
-      <p class="sub" style="margin-top:6px">✨ <b>Kit Paz – Anticrises</b> (versão 10.6)</p>
+      <p class="sub" style="margin-top:6px">✨ <b>Kit Paz – Anticrises</b> (versão 10.7)</p>
       <p class="sub" style="margin-top:6px">📧 top10mm@myyahoo.com</p>
       <button class="btn btn-suave" style="margin-top:16px" onclick="location.href='mailto:top10mm@myyahoo.com'">Enviar e-mail 💌</button>
       <div style="margin-top:18px;padding-top:14px;border-top:1px dashed #E3D8F6;text-align:left">
@@ -727,6 +764,12 @@ d. Rights beyond those granted in this Public License are completely reserved by
     <div class="nt-cores" id="notaCores"></div>
     <div class="nt-rodape"><button class="btn btn-fantasma" onclick="notaFechar()">Cancelar</button><button class="btn btn-suave" onclick="notaSalvar()">Salvar</button></div>
   </div>
+</div>
+<div class="sair-ov" id="sairOv">
+  <div style="font-size:3rem">💜</div>
+  <h2 style="margin-top:10px">Até logo!</h2>
+  <p class="sub" style="margin-top:10px;max-width:300px">O Kit Paz foi encerrado. Você já pode fechar esta janela. No celular, volte para a tela inicial do aparelho ou deslize o app para fechá-lo.</p>
+  <button class="btn btn-suave" style="margin-top:22px;max-width:260px" onclick="$('#sairOv').classList.remove('on')">Voltar ao app</button>
 </div>
 <div class="sono-ov" id="sonoOv" onclick="try{if(musCtx&&musCtx.state!=='running')musCtx.resume();if(window.speechSynthesis)speechSynthesis.resume()}catch(e){}">
   <div class="sono-bolha" id="sonoBolha">🌙</div>
@@ -791,6 +834,7 @@ const TECNICAS=[
  {id:'agua',ico:'💧',nome:'Água fria no rosto',desc:'Ativa o reflexo de mergulho dos mamíferos (ativa o modo de sobrevivência do corpo que desacelera os batimentos cardíacos e redireciona o fluxo sanguíneo para proteger o coração e o cérebro).'},
  {id:'andar',ico:'🚶',nome:'Caminhar 5 minutos',desc:'Movimento leve gasta a adrenalina do corpo em alerta.'},
  {id:'ground',ico:'🖐️',nome:'Aterramento 5-4-3-2-1',desc:'Use os 5 sentidos para voltar ao presente. Ele é uma técnica de “ancoragem no presente” para momentos de ansiedade ou pânico. O objetivo é tirar a atenção dos pensamentos acelerados, e perceber o que está ao seu redor. Escreva ou apenas imagine, no seu ritmo.'},
+ {id:'rapidas',ico:'⚡',nome:'Estratégias Rápidas',desc:'Como se sentir melhor na hora: uma sugestão rápida para cada sentimento. Só leitura e reflexão, sem pontuação.'},
  {id:'frases',ico:'💬',nome:'Frases Motivacionais Diárias',desc:'Uma frase nova todo dia para lembrar da sua força.'},
  {id:'sono',ico:'🌙',nome:'Ritual do Sono',desc:'Luz baixa, respiração lenta 4-7-8 e um som calmo que desliga sozinho. Para desacelerar e dormir melhor.'},
  {id:'contato',ico:'💗',nome:'Pedir ajuda',desc:'Chamar alguém de confiança. Pedir ajuda é força, não fraqueza.'}
@@ -827,7 +871,7 @@ function ir(id){
   const kitNav=$('.nav[data-t="t-kit"]');if(kitNav)kitNav.classList.toggle('pisca',id==='t-inicio');
   window.scrollTo({top:0,behavior:'smooth'});
 }
-$$('.nav').forEach(n=>n.onclick=()=>ir(n.dataset.t));
+$$('.nav[data-t]').forEach(n=>n.onclick=()=>ir(n.dataset.t));
 
 function renderBanner(){
   const ultimos=D.humor.slice(-3);
@@ -1087,6 +1131,8 @@ function usarTecnica(id){
     ir('t-musica');
   }else if(id==='cromo'){
     iniciarCromo();
+  }else if(id==='rapidas'){
+    ir('t-rapidas');
   }else if(id==='frases'){
     ir('t-frases');renderFraseDia();
   }else if(id==='lembrete'){
@@ -1816,6 +1862,18 @@ function apagarTudo(){
   location.reload();
 }
 
+/* ===== SAÍDA: para sons e voz e fecha o aplicativo ===== */
+function sairApp(){
+  try{pararMusica()}catch(e){}
+  try{pararOceano()}catch(e){}
+  try{if(window.speechSynthesis)speechSynthesis.cancel()}catch(e){}
+  try{const a=$('#taiChiAudio');if(a)a.pause()}catch(e){}
+  try{if($('#sonoOv').classList.contains('on'))encerrarSono()}catch(e){}
+  try{clearInterval(cromoInt)}catch(e){}
+  try{window.close()}catch(e){}
+  /* se o navegador não permitir fechar sozinho (ex.: aba comum ou iPhone), mostra a despedida */
+  setTimeout(()=>{$('#sairOv').classList.add('on')},350);
+}
 /* ===== PWA: funcionar offline e permitir instalação ===== */
 let promptInstalar=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();promptInstalar=e;atualizaStatusApp()});
