@@ -218,6 +218,8 @@ input[type=range]{padding:0;height:34px;border:none;background:transparent;accen
 .kit-item .ico{font-size:1.5rem}
 .kit-item b{font-size:.92rem}
 .kit-item p{font-size:.78rem;color:var(--texto2);margin-top:2px}
+@media (max-width:350px){.kit-div{padding:5px 3px!important;margin-left:-10px;margin-right:-10px;letter-spacing:-.1px}}
+.kit-div{margin-top:14px;padding:6px 12px;border-radius:12px;background:#FFF3E6;border:1px dashed #F2B27A;color:#C2570A;font-style:italic;font-size:.78rem;line-height:1.35;text-align:center}
 .tag-funciona{margin-left:auto;background:var(--menta);color:#2F6B57;font-size:.6rem;font-weight:800;border-radius:999px;padding:3px 8px;white-space:nowrap}
 .vazio{text-align:center;color:var(--texto2);font-size:.85rem;padding:22px 10px}
 .cab-k{display:flex;align-items:center;gap:8px}
@@ -287,7 +289,7 @@ input[type=range]{padding:0;height:34px;border:none;background:transparent;accen
   <!-- TELA INÍCIO -->
   <div class="tela ativa" id="t-inicio">
     <div class="card">
-      <p class="sub">O Kit Paz - Anticrises é seu companheiro de bolso para momentos de ansiedade, pânico e sobrecarga.</p>
+      <p class="sub">O <b>Kit Paz - Anticrises</b> é seu companheiro de bolso para momentos de ansiedade, pânico e sobrecarga.</p>
     </div>
     <div class="card" style="margin-top:16px">
       <div class="cab-k"><h2>🧘 Sua paz do dia</h2></div>
@@ -736,7 +738,7 @@ d. Rights beyond those granted in this Public License are completely reserved by
     </div>
     <div class="card" style="text-align:center">
       <p class="sub">📅 Início do Projeto: Outubro/2026</p>
-      <p class="sub" style="margin-top:6px">✨ <b>Kit Paz – Anticrises</b> (versão 10.7)</p>
+      <p class="sub" style="margin-top:6px">✨ <b>Kit Paz – Anticrises</b> (versão 10.8)</p>
       <p class="sub" style="margin-top:6px">📧 top10mm@myyahoo.com</p>
       <button class="btn btn-suave" style="margin-top:16px" onclick="location.href='mailto:top10mm@myyahoo.com'">Enviar e-mail 💌</button>
       <div style="margin-top:18px;padding-top:14px;border-top:1px dashed #E3D8F6;text-align:left">
@@ -834,10 +836,10 @@ const TECNICAS=[
  {id:'agua',ico:'💧',nome:'Água fria no rosto',desc:'Ativa o reflexo de mergulho dos mamíferos (ativa o modo de sobrevivência do corpo que desacelera os batimentos cardíacos e redireciona o fluxo sanguíneo para proteger o coração e o cérebro).'},
  {id:'andar',ico:'🚶',nome:'Caminhar 5 minutos',desc:'Movimento leve gasta a adrenalina do corpo em alerta.'},
  {id:'ground',ico:'🖐️',nome:'Aterramento 5-4-3-2-1',desc:'Use os 5 sentidos para voltar ao presente. Ele é uma técnica de “ancoragem no presente” para momentos de ansiedade ou pânico. O objetivo é tirar a atenção dos pensamentos acelerados, e perceber o que está ao seu redor. Escreva ou apenas imagine, no seu ritmo.'},
- {id:'rapidas',ico:'⚡',nome:'Estratégias Rápidas',desc:'Como se sentir melhor na hora: uma sugestão rápida para cada sentimento. Só leitura e reflexão, sem pontuação.'},
- {id:'frases',ico:'💬',nome:'Frases Motivacionais Diárias',desc:'Uma frase nova todo dia para lembrar da sua força.'},
- {id:'sono',ico:'🌙',nome:'Ritual do Sono',desc:'Luz baixa, respiração lenta 4-7-8 e um som calmo que desliga sozinho. Para desacelerar e dormir melhor.'},
- {id:'contato',ico:'💗',nome:'Pedir ajuda',desc:'Chamar alguém de confiança. Pedir ajuda é força, não fraqueza.'}
+ {id:'rapidas',fixa:true,ico:'⚡',nome:'Estratégias Rápidas',desc:'Como se sentir melhor na hora: uma sugestão rápida para cada sentimento. Só leitura e reflexão, sem pontuação.'},
+ {id:'frases',fixa:true,ico:'💬',nome:'Frases Motivacionais Diárias',desc:'Uma frase nova todo dia para lembrar da sua força.'},
+ {id:'sono',fixa:true,ico:'🌙',nome:'Ritual do Sono',desc:'Luz baixa, respiração lenta 4-7-8 e um som calmo que desliga sozinho. Para desacelerar e dormir melhor.'},
+ {id:'contato',fixa:true,ico:'💗',nome:'Pedir ajuda',desc:'Chamar alguém de confiança. Pedir ajuda é força, não fraqueza.'}
 ];
 let vozOn=true, respTimer=null, ciclo=0, tecnicaUsada='resp', gStep=0, gItens=[];
 
@@ -1101,13 +1103,17 @@ function eficaciaPorTec(){
 function renderKit(){
   const ef=eficaciaPorTec();const el=$('#listaKit');
   const ordem=[...TECNICAS].sort((a,b)=>{
+    /* práticas sem pontuação (fixa) nunca entram na reordenação: ficam sempre no fim, na ordem original */
+    if(!!a.fixa!==!!b.fixa)return a.fixa?1:-1;
+    if(a.fixa&&b.fixa)return 0;
     const ea=ef[a.id]?ef[a.id].soma/ef[a.id].n:-99, eb=ef[b.id]?ef[b.id].soma/ef[b.id].n:-99;
     if(eb!==ea)return eb-ea;
     return (ef[b.id]?ef[b.id].n:0)-(ef[a.id]?ef[a.id].n:0);   /* empate: mais registros primeiro */
   });
   el.innerHTML=ordem.map(t=>{
     const e=ef[t.id];const media=e?(e.soma/e.n).toFixed(1):null;
-    return '<div class="kit-item" style="cursor:pointer" onclick="usarTecnica(\''+t.id+'\')"><span class="ico">'+t.ico+'</span><div style="flex:1"><b>'+t.nome+'</b><p>'+t.desc+(media!==null?' <b>· alívio médio de '+media+' pontos</b>':'')+'</p></div>'+(media!==null&&media>=3?'<span class="tag-funciona">★ funciona p/ você</span>':'')+'<span style="font-size:1.4rem;color:#B39DDB;font-weight:900">›</span></div>';
+    const divisao=t.id==='rapidas'?'<div class="kit-div">As ferramentas abaixo são sem pontuação, e não entram em reordenação</div>':'';
+    return divisao+'<div class="kit-item" style="cursor:pointer" onclick="usarTecnica(\''+t.id+'\')"><span class="ico">'+t.ico+'</span><div style="flex:1"><b>'+t.nome+'</b><p>'+t.desc+(media!==null?' <b>· alívio médio de '+media+' pontos</b>':'')+'</p></div>'+(media!==null&&media>=3?'<span class="tag-funciona">★ funciona p/ você</span>':'')+'<span style="font-size:1.4rem;color:#B39DDB;font-weight:900">›</span></div>';
   }).join('');
 }
 
