@@ -364,7 +364,7 @@ input[type=range]{padding:0;height:34px;border:none;background:transparent;accen
       <div class="cab-k"><h2>🎒 Seu Kit Paz</h2></div>
       <p class="sub" style="margin-top:6px">Seu Kit Paz é baseado em técnicas que podem te proporcionar relaxamento e bem estar.</p>
       <p class="sub" style="margin-top:8px">Abaixo temos uma <b>sequência sugerida</b> de técnicas, mas você pode experimentá-las livremente na ordem que quiser.</p>
-      <p class="sub" style="margin-top:8px">O Kit aprende com seu uso e reordena pelas técnicas que mais aliviaram você nos últimos 30 dias, conforme a pontuação registrada.</p>
+      <p class="sub" style="margin-top:8px">O Kit aprende com seu uso e reordena pelas técnicas que mais aliviaram você nos últimos 30 dias, conforme a pontuação registrada na sua avaliação.</p>
       <div id="listaKit"></div>
     </div>
   </div>
@@ -738,7 +738,7 @@ d. Rights beyond those granted in this Public License are completely reserved by
     </div>
     <div class="card" style="text-align:center">
       <p class="sub">📅 Início do Projeto: Outubro/2026</p>
-      <p class="sub" style="margin-top:6px">✨ <b>Kit Paz – Anticrises</b> (versão 10.8)</p>
+      <p class="sub" style="margin-top:6px">✨ <b>Kit Paz – Anticrises</b> (versão 10.9)</p>
       <p class="sub" style="margin-top:6px">📧 top10mm@myyahoo.com</p>
       <button class="btn btn-suave" style="margin-top:16px" onclick="location.href='mailto:top10mm@myyahoo.com'">Enviar e-mail 💌</button>
       <div style="margin-top:18px;padding-top:14px;border-top:1px dashed #E3D8F6;text-align:left">
@@ -1112,7 +1112,7 @@ function renderKit(){
   });
   el.innerHTML=ordem.map(t=>{
     const e=ef[t.id];const media=e?(e.soma/e.n).toFixed(1):null;
-    const divisao=t.id==='rapidas'?'<div class="kit-div">As ferramentas abaixo são sem pontuação, e não entram em reordenação</div>':'';
+    const divisao=t.id==='rapidas'?'<div class="kit-div">As ferramentas abaixo não entram em reordenação, ficam fixas, pois não solicitam sua avaliação com pontuação</div>':'';
     return divisao+'<div class="kit-item" style="cursor:pointer" onclick="usarTecnica(\''+t.id+'\')"><span class="ico">'+t.ico+'</span><div style="flex:1"><b>'+t.nome+'</b><p>'+t.desc+(media!==null?' <b>· alívio médio de '+media+' pontos</b>':'')+'</p></div>'+(media!==null&&media>=3?'<span class="tag-funciona">★ funciona p/ você</span>':'')+'<span style="font-size:1.4rem;color:#B39DDB;font-weight:900">›</span></div>';
   }).join('');
 }
